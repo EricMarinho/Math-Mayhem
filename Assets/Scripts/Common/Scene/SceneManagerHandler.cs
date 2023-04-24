@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,12 @@ namespace Scenes
         public void ReturnToMenu()
         {
             SceneManager.LoadScene(0);
+            PlayerPrefs.SetString("ReturnToStageSelect", "true");
         }
 
+        public void RestartScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

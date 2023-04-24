@@ -19,18 +19,18 @@ namespace UI{
         [SerializeField] private GameObject stageSelectCanvas;
 
         private void Start()
-        {
+        {  
             startGameButton.onClick.AddListener(StartGame);
             returnToTittleScreenButton.onClick.AddListener(ReturnToTittleScreen);
             foreach (var (stageButton, i) in stageButtons.Select((value, i) => (value, i)))
             {
                 stageButton.onClick.AddListener(() => SceneManagerHandler.Instance.LoadStage(i+1));
-            }   
-        }
-
-        private void OnEnable()
-        {
-            
+            }
+            if (PlayerPrefs.GetString("ReturnToStageSelect", "false") == "true")
+            {
+                PlayerPrefs.SetString("ReturnToStageSelect", "false");
+                StartGame();
+            }
         }
 
         private void StartGame()
